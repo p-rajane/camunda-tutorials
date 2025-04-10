@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xdx5zd" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.14.0">
+  <bpmn:process id="SendTask" isExecutable="true" camunda:historyTimeToLive="P36500D">
+    <bpmn:sendTask id="Activity_0gador0" camunda:delegateExpression="${delegateExpressionImpl}">
+      <bpmn:incoming>Flow_0rdy9zp</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lojgpp</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_1o2npw5">
+      <bpmn:incoming>Flow_1lojgpp</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1lojgpp" sourceRef="Activity_0gador0" targetRef="Event_1o2npw5" />
+    <bpmn:startEvent id="Event_1isnwen">
+      <bpmn:outgoing>Flow_0rdy9zp</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0rdy9zp" sourceRef="Event_1isnwen" targetRef="Activity_0gador0" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="SendTask">
+      <bpmndi:BPMNEdge id="Flow_1lojgpp_di" bpmnElement="Flow_1lojgpp">
+        <di:waypoint x="340" y="110" />
+        <di:waypoint x="392" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rdy9zp_di" bpmnElement="Flow_0rdy9zp">
+        <di:waypoint x="188" y="110" />
+        <di:waypoint x="240" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1isnwen_di" bpmnElement="Event_1isnwen">
+        <dc:Bounds x="152" y="92" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1o2npw5_di" bpmnElement="Event_1o2npw5">
+        <dc:Bounds x="392" y="92" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kch5uz_di" bpmnElement="Activity_0gador0">
+        <dc:Bounds x="240" y="70" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

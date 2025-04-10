@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xdx5zd" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.14.0">
+  <bpmn:process id="MainProcess" isExecutable="true" camunda:historyTimeToLive="P1D">
+    <bpmn:startEvent id="Event_0n3nx2x">
+      <bpmn:outgoing>Flow_00zwaj7</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_00zwaj7" sourceRef="Event_0n3nx2x" targetRef="Activity_11c9cq2" />
+    <bpmn:serviceTask id="Activity_11c9cq2" name="Using Java Class" camunda:class="tutorial.servicetask.JavaClassImpl">
+      <bpmn:incoming>Flow_00zwaj7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fn3av0</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0stqstw">
+      <bpmn:incoming>Flow_1nmnska</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1fn3av0" sourceRef="Activity_11c9cq2" targetRef="Activity_0xzdaaz" />
+    <bpmn:sequenceFlow id="Flow_0n6ms62" sourceRef="Activity_0xzdaaz" targetRef="Activity_0odnzr1" />
+    <bpmn:serviceTask id="Activity_0xzdaaz" name="Using Delegate Expression" camunda:class="tutorial.servicetask.DelegateExpressionImpl">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="tutorial.servicetask.JavaClassImpl" event="start" />
+        <camunda:executionListener class="tutorial.servicetask.JavaClassImpl" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1fn3av0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0n6ms62</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1nmnska" sourceRef="Activity_0odnzr1" targetRef="Event_0stqstw" />
+    <bpmn:serviceTask id="Activity_0odnzr1" name="Using Expression" camunda:expression="${expressionImpl.executeExpression(execution)}">
+      <bpmn:incoming>Flow_0n6ms62</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nmnska</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="MainProcess">
+      <bpmndi:BPMNEdge id="Flow_1nmnska_di" bpmnElement="Flow_1nmnska">
+        <di:waypoint x="630" y="160" />
+        <di:waypoint x="692" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0n6ms62_di" bpmnElement="Flow_0n6ms62">
+        <di:waypoint x="490" y="160" />
+        <di:waypoint x="530" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fn3av0_di" bpmnElement="Flow_1fn3av0">
+        <di:waypoint x="340" y="160" />
+        <di:waypoint x="390" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00zwaj7_di" bpmnElement="Flow_00zwaj7">
+        <di:waypoint x="188" y="160" />
+        <di:waypoint x="240" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0n3nx2x_di" bpmnElement="Event_0n3nx2x">
+        <dc:Bounds x="152" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_185i7qs_di" bpmnElement="Activity_11c9cq2">
+        <dc:Bounds x="240" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0stqstw_di" bpmnElement="Event_0stqstw">
+        <dc:Bounds x="692" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07ftqc8_di" bpmnElement="Activity_0xzdaaz">
+        <dc:Bounds x="390" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_019kmb1_di" bpmnElement="Activity_0odnzr1">
+        <dc:Bounds x="530" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
